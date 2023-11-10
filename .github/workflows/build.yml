@@ -11,33 +11,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
+    - name: Checkout code
       uses: actions/checkout@v3
-
+      
     - name: Set up Java
       uses: actions/setup-java@v3
       with:
-        distribution: 'adopt'
         java-version: '17'
+        distribution: 'adopt'
+        cache: 'gradle'
+        
+    - name: Make Gradlew Executable
+      run: chmod +x ./gradlew
 
     - name: Build Debug APK
-      run: |
-        ./gradlew assembleDebug
-      working-directory: app/
+      run: ./gradlew assembleDebug
 
+    - name: Build Release APK
+      run: ./gradlew assembleRelease
+      
     - name: Upload Debug APK
       uses: actions/upload-artifact@v3
       with:
-        name: app-debug
+        name: debug-apk
         path: app/build/outputs/apk/debug/app-debug.apk
-
-    - name: Build APK
-      run: |
-        ./gradlew assembleRelease
-      working-directory: app/
-
-    - name: Upload APK
+    
+    - name: Upload Release APK
       uses: actions/upload-artifact@v3
       with:
-        name: app-release
+        name: release-apk
         path: app/build/outputs/apk/release/app-release.apk
