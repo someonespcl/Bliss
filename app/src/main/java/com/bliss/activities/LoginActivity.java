@@ -1,5 +1,6 @@
 package com.bliss.activities;
 
+import android.animation.ObjectAnimator;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,13 +11,12 @@ import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
+import android.view.animation.CycleInterpolator;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.Interpolator;
 import androidx.appcompat.app.AppCompatActivity;
 import com.bliss.R;
 import com.bliss.databinding.ActivityLoginBinding;
-import com.daimajia.androidanimations.library.Techniques;
-import com.daimajia.androidanimations.library.YoYo;
 
 public class LoginActivity extends AppCompatActivity {
     
@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         
         binding.loginActivityButton.setOnClickListener( v -> {
-             YoYo.with(Techniques.Shake).duration(700).repeat(0).playOn(binding.loginUserEmail);
+             showErrorAnimation(binding.loginUserPassword);
              vibrateDevice();
         });
         
@@ -81,5 +81,12 @@ public class LoginActivity extends AppCompatActivity {
                 vibrator.vibrate(64);
             }
         } else {}
+    }
+    
+    private void showErrorAnimation(View view) {
+        ObjectAnimator shakeAnimator = ObjectAnimator.ofFloat(view,  "translationX", 0, 25, -25, 25, -25, 15, -15, 6, -6, 0);
+        shakeAnimator.setDuration(1000); // Adjust the duration as needed
+        shakeAnimator.setInterpolator(new DecelerateInterpolator()); // This creates the shake effect
+        shakeAnimator.start();
     }
 }
