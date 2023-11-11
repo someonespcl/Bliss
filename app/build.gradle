@@ -26,6 +26,12 @@ android {
             keyAlias "bliss"
             keyPassword "blissm143"
         }
+        debug {
+            storeFile file("bliss-key.jks")
+            storePassword "blissm143"
+            keyAlias "bliss"
+            keyPassword "blissm143"
+        }
     }
 
     buildTypes {
@@ -35,6 +41,14 @@ android {
             shrinkResources true
             zipAlignEnabled true
             signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            debuggable true
+            minifyEnabled false
+            shrinkResources false
+            zipAlignEnabled true
+            signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -55,4 +69,5 @@ dependencies {
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.daimajia.androidanimations:library:2.4@aar")
 }
