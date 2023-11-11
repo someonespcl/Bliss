@@ -1,22 +1,24 @@
 package com.bliss.activities;
 
 import android.animation.ObjectAnimator;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Vibrator;
-import android.content.Context;
 import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Patterns;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.CycleInterpolator;
 import android.view.animation.DecelerateInterpolator;
-import android.view.animation.Interpolator;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.bliss.R;
 import com.bliss.databinding.ActivityLoginBinding;
+import com.bliss.utils.CustomToast;
 
 public class LoginActivity extends AppCompatActivity {
     
@@ -30,8 +32,21 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         
         binding.loginActivityButton.setOnClickListener( v -> {
-             showErrorAnimation(binding.loginUserPassword);
-             vibrateDevice();
+            String loginUserEmail = binding.loginUserEmail.getText().toString().trim();
+            String loginUserPassword = binding.loginUserPassword.getText().toString().trim();
+            if(loginUserEmail.isEmpty()) {
+                showErrorAnimation(binding.loginUserEmail); 
+            	vibrateDevice();
+            } else if(!Patterns.EMAIL_ADDRESS.matcher(loginUserEmail).matches()) {
+            	CustomToast.showCustomToast(LoginActivity.this, "Invalid Email Address");
+            } else if(loginUserPassword.isEmpty()) {
+                showErrorAnimation(binding.loginUserPassword);
+            	vibrateDevice();
+            } else if(loginUserPassword.length() < 6) {
+            	CustomToast.showCustomToast(LoginActivity.this, "Password Must Be >= 6");
+            } else {
+                CustomToast.showCustomToast(LoginActivity.this, "Login Successful");
+            }
         });
         
         binding.loginUserPassword.setOnTouchListener(
@@ -76,17 +91,17 @@ public class LoginActivity extends AppCompatActivity {
         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         if (vibrator != null && vibrator.hasVibrator()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                vibrator.vibrate(VibrationEffect.createOneShot(64, VibrationEffect.DEFAULT_AMPLITUDE));
+                vibrator.vibrate(VibrationEffect.createOneShot(100, VibrationEffect.DEFAULT_AMPLITUDE));
             } else {
-                vibrator.vibrate(64);
+                vibrator.vibrate(100);
             }
         } else {}
     }
     
     private void showErrorAnimation(View view) {
         ObjectAnimator shakeAnimator = ObjectAnimator.ofFloat(view,  "translationX", 0, 25, -25, 25, -25, 15, -15, 6, -6, 0);
-        shakeAnimator.setDuration(1000); // Adjust the duration as needed
-        shakeAnimator.setInterpolator(new DecelerateInterpolator()); // This creates the shake effect
+        shakeAnimator.setDuration(1000);
+        shakeAnimator.setInterpolator(new DecelerateInterpolator());
         shakeAnimator.start();
     }
-}
+} 
