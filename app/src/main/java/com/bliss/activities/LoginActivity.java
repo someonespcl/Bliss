@@ -19,13 +19,17 @@ import android.view.animation.DecelerateInterpolator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.lifecycle.ViewModelProvider;
+import com.bliss.activities.MainActivity;
 import com.bliss.R;
 import com.bliss.databinding.ActivityLoginBinding;
 import com.bliss.utils.CustomToast;
+import com.bliss.viewmodel.AuthViewModel;
 
 public class LoginActivity extends AppCompatActivity {
     
     private ActivityLoginBinding binding;
+    private AuthViewModel authViewModel;
     Boolean passwordVisibile = false;
     
     @Override
@@ -33,6 +37,22 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        
+        authViewModel = new ViewModelProvider(LoginActivity.this).get(AuthViewModel.class);
+        
+        authViewModel.getAuthenticatedUser().observe(LoginActivity.this, user -> {
+            if (user != null) {
+                CustomToast.showCustomToast(LoginActivity.this, "Login Successful");
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                finish();
+            }
+        });
+        
+        authViewModel.getAuthenticationError().observe(LoginActivity.this, error -> {
+            if (error != null) {
+                CustomToast.showCustomToast(LoginActivity.this, error);
+            }
+        });
         
         binding.loginActivityButton.setOnClickListener( v -> {
             String loginUserEmail = binding.loginUserEmail.getText().toString().trim();
@@ -48,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
             } else if(loginUserPassword.length() < 6) {
             	CustomToast.showCustomToast(LoginActivity.this, "Password Must Be >= 6");
             } else {
-                CustomToast.showCustomToast(LoginActivity.this, "Login Successful");
+                authViewModel.signInWithEmailAndPassword(loginUserEmail, loginUserPassword);
             }
         });
         
@@ -90,11 +110,12 @@ public class LoginActivity extends AppCompatActivity {
                 });
 
         binding.registerButton.setOnClickListener(v -> {
-            Pair<View, String>[] pair = new Pair[4];
+            Pair<View, String>[] pair = new Pair[5];
             pair[0] = new Pair<View, String>(binding.loginUserEmail, "email_transition");
             pair[1] = new Pair<View, String>(binding.loginUserPassword, "password_transition");
             pair[2] = new Pair<View, String>(binding.loginActivityButton, "button_transition");
-            pair[3] = new Pair<View, String>(binding.containerTextView, "container_transition");
+            pair[3] = new Pair<View, String>(binding.signInWithGoogleButton, "google_button_transition");
+            pair[4] = new Pair<View, String>(binding.containerTextView, "container_transition");
                 
             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this, pair);
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);

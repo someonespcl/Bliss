@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Bliss</string>
     <string name="sign_in_with_google">Sign In With Google</string>
+    <string name="continue_in_with_google">Continue In With Google</string>
     <string name="login">Login</string>
     <string name="forget_password">Forget Password ?</string>
     <string name="remember_me">Remember Me</string>
@@ -10,4 +11,9 @@
     <string name ="already_have_an_accoun">Already Have An Account ?</string>
     <string name="register">Register</string>
     <string name="create_your_account">Create\nyour account.</string>
+    
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
+    <string name="chats">Chats</string>
+    <string name="settings">Settings</string>
 </resources>
