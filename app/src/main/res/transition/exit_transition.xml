@@ -1,0 +1,6 @@
+<!-- exit_transition.xml -->
+<transitionSet xmlns:android="http://schemas.android.com/apk/res/android">
+    <explode />
+    <changeBounds />
+    <changeTransform />
+</transitionSet>

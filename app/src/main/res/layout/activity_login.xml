@@ -13,18 +13,21 @@
     <LinearLayout
          android:layout_height="wrap_content"
          android:layout_width="match_parent"
-         android:orientation="vertical">
+         android:orientation="vertical" >
 
         <TextView
+             android:id="@+id/appName"
              android:layout_height="wrap_content"
              android:layout_width="wrap_content"
              android:includeFontPadding="false"
              android:fontFamily="@font/signlode_font"
              android:textSize="24sp"
              android:textColor="#ffffff"
+             android:layout_marginTop="64dp"
              android:text="@string/app_name" />
 
         <TextView
+             android:id="@+id/login_into_account_text"
              android:layout_height="wrap_content"
              android:layout_width="wrap_content"
              android:includeFontPadding="false"
@@ -47,7 +50,8 @@
              android:backgroundTint="@null"
              android:paddingHorizontal="12dp"
              android:inputType="textEmailAddress"
-             android:id="@+id/login_user_email" />
+             android:id="@+id/login_user_email"
+             android:transitionName="email_transition" />
 
         <EditText
              android:layout_height="50dp"
@@ -64,7 +68,8 @@
              android:drawableRight="@drawable/eye_close_icon"
              android:paddingHorizontal="12dp"
              android:inputType="textPassword"
-             android:id="@+id/login_user_password" />
+             android:id="@+id/login_user_password"
+             android:transitionName="password_transition" />
 
         <LinearLayout
              android:layout_height="wrap_content"
@@ -108,7 +113,8 @@
              android:fontFamily="@font/poppins_medium"
              android:textAllCaps="false"
              android:id="@+id/login_activity_button"
-             android:text="@string/login" />
+             android:text="@string/login"
+             android:transitionName="button_transition" />
 
         <Button
              android:layout_height="wrap_content"
@@ -118,6 +124,7 @@
              android:textSize="16sp"
              android:textColor="@android:color/black"
              android:layout_marginTop="20dp"
+             android:clickable="true"
              android:background="@drawable/google_button_background"
              android:drawableLeft="@drawable/google_icon"
              android:fontFamily="@font/poppins_regular"
@@ -140,7 +147,9 @@
         <RelativeLayout
              android:layout_height="wrap_content"
              android:layout_width="match_parent"
-             android:layout_marginTop="5dp">
+             android:layout_marginTop="5dp"
+             android:id="@+id/container_text_view"
+             android:transitionName="container_transition">
 
             <TextView
                  android:layout_height="wrap_content"

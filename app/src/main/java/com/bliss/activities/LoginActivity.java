@@ -1,7 +1,9 @@
 package com.bliss.activities;
 
 import android.animation.ObjectAnimator;
+import android.app.ActivityOptions;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Pair;
 import android.util.Patterns;
 import android.view.MotionEvent;
 import android.view.View;
@@ -85,6 +88,19 @@ public class LoginActivity extends AppCompatActivity {
                         return false;
                     }
                 });
+
+        binding.registerButton.setOnClickListener(v -> {
+            Pair<View, String>[] pair = new Pair[4];
+            pair[0] = new Pair<View, String>(binding.loginUserEmail, "email_transition");
+            pair[1] = new Pair<View, String>(binding.loginUserPassword, "password_transition");
+            pair[2] = new Pair<View, String>(binding.loginActivityButton, "button_transition");
+            pair[3] = new Pair<View, String>(binding.containerTextView, "container_transition");
+                
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this, pair);
+            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(intent, options.toBundle());
+                
+        });
     }
     
     private void vibrateDevice() {

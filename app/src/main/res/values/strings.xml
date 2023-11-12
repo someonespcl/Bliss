@@ -7,5 +7,7 @@
     <string name="remember_me">Remember Me</string>
     <string name="login_into_your_account">Login into\nyour account.</string>
     <string name ="dont_have_an_accoun">Dont Have An Account ?</string>
+    <string name ="already_have_an_accoun">Already Have An Account ?</string>
     <string name="register">Register</string>
+    <string name="create_your_account">Create\nyour account.</string>
 </resources>
