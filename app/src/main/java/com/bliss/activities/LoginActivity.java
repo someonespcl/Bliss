@@ -20,9 +20,9 @@ import android.view.animation.DecelerateInterpolator;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.lifecycle.ViewModelProvider;
-import com.bliss.activities.MainActivity;
 import com.bliss.R;
 import com.bliss.databinding.ActivityLoginBinding;
+import com.bliss.utils.CustomLoadingDialog;
 import com.bliss.utils.CustomToast;
 import com.bliss.viewmodel.AuthViewModel;
 
@@ -42,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         
         authViewModel.getAuthenticatedUser().observe(LoginActivity.this, user -> {
             if (user != null) {
+                CustomLoadingDialog.hideLoadingDialog();
                 CustomToast.showCustomToast(LoginActivity.this, "Login Successful");
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 finish();
@@ -50,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         
         authViewModel.getAuthenticationError().observe(LoginActivity.this, error -> {
             if (error != null) {
+                CustomLoadingDialog.hideLoadingDialog();
                 CustomToast.showCustomToast(LoginActivity.this, error);
             }
         });
@@ -68,6 +70,7 @@ public class LoginActivity extends AppCompatActivity {
             } else if(loginUserPassword.length() < 6) {
             	CustomToast.showCustomToast(LoginActivity.this, "Password Must Be >= 6");
             } else {
+                CustomLoadingDialog.showLoadingDialog(LoginActivity.this);
                 authViewModel.signInWithEmailAndPassword(loginUserEmail, loginUserPassword);
             }
         });

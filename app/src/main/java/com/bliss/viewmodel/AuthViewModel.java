@@ -12,7 +12,6 @@ import java.util.HashMap;
 public class AuthViewModel extends ViewModel {
 
     private final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-    private final FirebaseUser user = firebaseAuth.getCurrentUser();
     private final FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private final DatabaseReference databaseReference = firebaseDatabase.getInstance().getReference("users");
     private final MutableLiveData<FirebaseUser> authenticatedUser = new MutableLiveData<>();
@@ -27,20 +26,35 @@ public class AuthViewModel extends ViewModel {
     }
 
     public void signInWithEmailAndPassword(String email, String password) {
-        firebaseAuth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    authenticatedUser.setValue(user);
-                } else {
-                    authenticationError.setValue("Authentication Failed: " + task.getException().getMessage());
-                }
-            });
+        firebaseAuth
+                .signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(
+                        task -> {
+                            if (task.isSuccessful()) {
+                                FirebaseUser user = firebaseAuth.getCurrentUser();
+                                authenticatedUser.setValue(user);
+                            } else {
+                                String errorMessage = "Authentication Failed: ";
+                                if (task.getException() != null) {
+                                    String exceptionMessage = task.getException().getMessage();
+                                    if (exceptionMessage != null) {
+                                        if (exceptionMessage.contains("password")) {
+                                            errorMessage += "Wrong Password";
+                                        } else {
+                                            errorMessage += exceptionMessage;
+                                        }
+                                    }
+                                }
+                                authenticationError.setValue(errorMessage);
+                            }
+                        });
     }
 
     public void createAccountWithEmailAndPassword(String name, String phonenumber, String email, String password) {
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
+                    FirebaseUser user = firebaseAuth.getCurrentUser();
                     authenticatedUser.setValue(user);
                     if (user != null) {
                         String userId = user.getUid();
@@ -55,5 +69,24 @@ public class AuthViewModel extends ViewModel {
                     authenticationError.setValue("Account creation failed: " + task.getException().getMessage());
                 }
             });
+    }
+    
+    public void deactivateAccount() {
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if (user != null) {
+            user.delete()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        databaseReference.child(user.getUid()).removeValue().addOnCompleteListener(removeValueTask -> {
+                            if (!removeValueTask.isSuccessful()) {
+                                authenticationError.setValue(removeValueTask.getException().getMessage());
+                            }
+                        });
+                        authenticatedUser.setValue(null);
+                    } else {
+                        authenticationError.setValue("Account deactivation failed: " + task.getException().getMessage());
+                    }
+                });
+        }
     }
 }

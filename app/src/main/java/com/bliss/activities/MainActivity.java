@@ -3,10 +3,15 @@ package com.bliss.activities;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.fragment.app.FragmentManager;
 import com.bliss.activities.LoginActivity;
 import com.bliss.databinding.ActivityMainBinding;
+import com.bliss.fragments.SettingsFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import me.ibrahimsn.lib.OnItemSelectedListener;
+import me.ibrahimsn.lib.SmoothBottomBar;
+import com.bliss.R;
 
 public class MainActivity extends AppCompatActivity {
     
@@ -22,6 +27,27 @@ public class MainActivity extends AppCompatActivity {
         
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
+        
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        SmoothBottomBar bottom_nav = findViewById(R.id.bottom_navigation_view);
+        bottom_nav.setOnItemSelectedListener(new OnItemSelectedListener(){
+            @Override
+            public boolean onItemSelect(int itemIndex) {
+                switch(itemIndex){
+                     case 0:
+                        break;
+                     case 1:
+                        break;
+                     case 2:
+                        break;
+                     case 3:
+                        SettingsFragment settingsFragment = new SettingsFragment();
+                        fragmentManager.beginTransaction().replace(R.id.main_frame, settingsFragment).commit();
+                        break;
+                 }
+                 return true;
+            }
+        });
     }
     
     @Override

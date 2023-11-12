@@ -23,6 +23,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.bliss.activities.MainActivity;
 import com.bliss.R;
 import com.bliss.databinding.ActivityRegisterBinding;
+import com.bliss.utils.CustomLoadingDialog;
 import com.bliss.utils.CustomToast;
 import com.bliss.viewmodel.AuthViewModel;
 
@@ -42,6 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
         
         authViewModel.getAuthenticatedUser().observe(this, user -> {
             if (user != null) {
+                CustomLoadingDialog.hideLoadingDialog();
                 CustomToast.showCustomToast(RegisterActivity.this, "Registration Successfull");
                 startActivity(new Intent(RegisterActivity.this, MainActivity.class));
                 finish();
@@ -50,6 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
         
         authViewModel.getAuthenticationError().observe(RegisterActivity.this, error -> {
             if (error != null) {
+                CustomLoadingDialog.hideLoadingDialog();
                 CustomToast.showCustomToast(RegisterActivity.this, error);
             }
         });
@@ -85,6 +88,7 @@ public class RegisterActivity extends AppCompatActivity {
                     } else if (registerUserPassword.length() < 6) {
                         CustomToast.showCustomToast(RegisterActivity.this, "Password Must Be >= 6");
                     } else {
+                        CustomLoadingDialog.showLoadingDialog(RegisterActivity.this);
                         authViewModel.createAccountWithEmailAndPassword(registerUserName, registerUserPhonenumber, registerUserEmail, registerUserPassword);
                     }
                 });
