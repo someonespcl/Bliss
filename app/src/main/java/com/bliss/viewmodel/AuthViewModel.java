@@ -1,6 +1,9 @@
 package com.bliss.viewmodel;
 
 import androidx.lifecycle.ViewModel;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
+import android.util.Log;
 import com.google.firebase.auth.FirebaseAuth;
 import androidx.lifecycle.MutableLiveData;
 import com.google.firebase.auth.FirebaseUser;
@@ -70,23 +73,49 @@ public class AuthViewModel extends ViewModel {
                 }
             });
     }
-    
-    public void deactivateAccount() {
+
+    public void deactivateAccount(String deactivate_password) {
         FirebaseUser user = firebaseAuth.getCurrentUser();
+
         if (user != null) {
-            user.delete()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        databaseReference.child(user.getUid()).removeValue().addOnCompleteListener(removeValueTask -> {
-                            if (!removeValueTask.isSuccessful()) {
-                                authenticationError.setValue(removeValueTask.getException().getMessage());
-                            }
-                        });
-                        authenticatedUser.setValue(null);
-                    } else {
-                        authenticationError.setValue("Account deactivation failed: " + task.getException().getMessage());
-                    }
-                });
+            AuthCredential credential =
+                    EmailAuthProvider.getCredential(user.getEmail(), deactivate_password);
+
+            user.reauthenticate(credential)
+                    .addOnCompleteListener(
+                            reauthTask -> {
+                                if (reauthTask.isSuccessful()) {
+                                    user.delete()
+                                            .addOnCompleteListener(
+                                                    deleteTask -> {
+                                                        if (deleteTask.isSuccessful()) {
+                                                            // Delete user data in Realtime Database
+                                                            databaseReference
+                                                                    .child(user.getUid())
+                                                                    .removeValue()
+                                                                    .addOnCompleteListener(
+                                                                            removeValueTask -> {
+                                                                                if (!removeValueTask
+                                                                                        .isSuccessful()) {
+                                                                                    authenticationError.setValue(removeValueTask.getException().getMessage());
+                                                                                }
+                                                                            });
+
+                                                            authenticatedUser.setValue(null);
+                                                        } else {
+                                                            authenticationError.setValue(
+                                                                    "Account deactivation failed: "
+                                                                            + deleteTask
+                                                                                    .getException()
+                                                                                    .getMessage());
+                                                        }
+                                                    });
+                                } else {
+                                    authenticationError.setValue(
+                                            "Reauthentication failed: "
+                                                    + reauthTask.getException().getMessage());
+                                }
+                            });
         }
     }
 }

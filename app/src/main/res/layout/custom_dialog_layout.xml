@@ -15,8 +15,8 @@
          android:orientation="horizontal">
 
         <ImageView
-             android:layout_height="19dp"
-             android:layout_width="19dp"
+             android:layout_height="21dp"
+             android:layout_width="21dp"
              android:src="@drawable/alert_icon" />
 
         <TextView
@@ -24,7 +24,7 @@
              android:layout_width="wrap_content"
              android:includeFontPadding="false"
              android:fontFamily="@font/poppins_semibold"
-             android:textSize="16sp"
+             android:textSize="18sp"
              android:layout_marginLeft="5dp"
              android:textColor="#c72229"
              android:layout_gravity="center"
@@ -41,6 +41,21 @@
          android:layout_marginTop="12dp"
          android:text="@string/deactivate_account_text" />
 
+    <EditText
+         android:layout_height="45dp"
+         android:layout_width="match_parent"
+         android:elevation="8dp"
+         android:textColor="#FFC100"
+         android:layout_marginTop="12dp"
+         android:background="@drawable/edit_text_background"
+         android:hint="******"
+         android:includeFontPadding="false"
+         android:fontFamily="@font/poppins_regular"
+         android:backgroundTint="@null"
+         android:paddingHorizontal="12dp"
+         android:inputType="textPassword"
+         android:id="@+id/deactivate_account_password" />
+
     <LinearLayout
          android:layout_height="wrap_content"
          android:layout_width="match_parent"
@@ -50,14 +65,14 @@
         <Button
              android:layout_height="wrap_content"
              android:layout_width="wrap_content"
-             android:background="@android:color/transparent"
              app:backgroundTint="@null"
              android:elevation="8dp"
-             android:includeFontPadding="false"
              android:textSize="16sp"
+             android:textColor="@android:color/white"
+             android:background="@android:color/transparent"
+             android:includeFontPadding="false"
              android:fontFamily="@font/poppins_medium"
              android:textAllCaps="false"
-             android:textColor="@android:color/white"
              android:layout_weight="1"
              android:text="@string/cancel"
              android:id="@+id/deactivate_dialog_cancel_button" />

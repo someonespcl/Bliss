@@ -2,11 +2,18 @@ package com.bliss.fragments;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Vibrator;
+import android.content.Context;
+import android.os.VibrationEffect;
+import android.animation.ObjectAnimator;
+import android.view.animation.DecelerateInterpolator;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,6 +48,34 @@ public class SettingsFragment extends Fragment {
         
         authViewModel = new ViewModelProvider(getActivity()).get(AuthViewModel.class);
         
+        dialog = new Dialog(requireContext());
+        dialog.setContentView(R.layout.custom_dialog_layout);
+        dialog.getWindow().setBackgroundDrawableResource(R.drawable.custom_dialog_background);
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        
+        Button dialogCancelButton = dialog.findViewById(R.id.deactivate_dialog_cancel_button);
+        Button deactivateAccountButton = dialog.findViewById(R.id.deactivate_account_button);
+        EditText deactivatePassword = dialog.findViewById(R.id.deactivate_account_password);
+        
+        dialogCancelButton.setOnClickListener(v -> {
+            dialog.dismiss();
+        });
+        
+        deactivateAccountButton.setOnClickListener(v -> {
+            String _deactivatePassword = deactivatePassword.getText().toString().trim();
+            if(_deactivatePassword.isEmpty()) {
+                CustomToast.showCustomToast(requireContext(), "Cannot be empty");
+            	vibrateDevice();
+                showErrorAnimation(deactivatePassword);
+            } else if(_deactivatePassword.length() < 6) {
+            	CustomToast.showCustomToast(requireContext(), "Cannot be less than 6");
+            } else {
+                authViewModel.deactivateAccount(deactivatePassword.getText().toString().trim());
+            }
+        });
+
+        
         authViewModel.getAuthenticatedUser().observe(getViewLifecycleOwner(), user -> {
             if (user != null) {
                 
@@ -60,35 +95,27 @@ public class SettingsFragment extends Fragment {
         ImageView deactivateButton = view.findViewById(R.id.deactivate_account_setting);
         deactivateButton.setOnClickListener(
                 v -> {
-                    dialog = new Dialog(requireContext());
-                    dialog.setContentView(R.layout.custom_dialog_layout);
-                    dialog.getWindow()
-                            .setBackgroundDrawableResource(R.drawable.custom_dialog_background);
-                    dialog.setCancelable(false);
-                    dialog.setCanceledOnTouchOutside(false);
                     dialog.show();
-
-                    if (dialog != null) {
-                        Button dialogCancelButton =
-                                dialog.findViewById(R.id.deactivate_dialog_cancel_button);
-                        Button deactivateAccountButton =
-                                dialog.findViewById(R.id.deactivate_account_button);
-
-                        // Check if buttons are not null
-                        if (dialogCancelButton != null && deactivateAccountButton != null) {
-                            dialogCancelButton.setOnClickListener(
-                                    view1 -> {
-                                        dialog.dismiss();
-                                    });
-
-                            deactivateAccountButton.setOnClickListener(
-                                    view12 -> {
-                                        authViewModel.deactivateAccount();
-                                    });
-                        }
-                    }
                 });
 
         return view;
+    }
+    
+    private void vibrateDevice() {
+        Vibrator vibrator = (Vibrator) requireContext().getSystemService(Context.VIBRATOR_SERVICE);
+        if (vibrator != null && vibrator.hasVibrator()) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                vibrator.vibrate(VibrationEffect.createOneShot(100, VibrationEffect.DEFAULT_AMPLITUDE));
+            } else {
+                vibrator.vibrate(100);
+            }
+        } else {}
+    }
+    
+    private void showErrorAnimation(View view) {
+        ObjectAnimator shakeAnimator = ObjectAnimator.ofFloat(view,  "translationX", 0, 25, -25, 25, -25, 15, -15, 6, -6, 0);
+        shakeAnimator.setDuration(1000);
+        shakeAnimator.setInterpolator(new DecelerateInterpolator());
+        shakeAnimator.start();
     }
 }
