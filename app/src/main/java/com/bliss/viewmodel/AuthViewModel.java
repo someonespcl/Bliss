@@ -76,7 +76,6 @@ public class AuthViewModel extends ViewModel {
 
     public void deactivateAccount(String deactivate_password) {
         FirebaseUser user = firebaseAuth.getCurrentUser();
-
         if (user != null) {
             AuthCredential credential =
                     EmailAuthProvider.getCredential(user.getEmail(), deactivate_password);
@@ -89,18 +88,9 @@ public class AuthViewModel extends ViewModel {
                                             .addOnCompleteListener(
                                                     deleteTask -> {
                                                         if (deleteTask.isSuccessful()) {
-                                                            // Delete user data in Realtime Database
                                                             databaseReference
                                                                     .child(user.getUid())
-                                                                    .removeValue()
-                                                                    .addOnCompleteListener(
-                                                                            removeValueTask -> {
-                                                                                if (!removeValueTask
-                                                                                        .isSuccessful()) {
-                                                                                    authenticationError.setValue(removeValueTask.getException().getMessage());
-                                                                                }
-                                                                            });
-
+                                                                    .removeValue();
                                                             authenticatedUser.setValue(null);
                                                         } else {
                                                             authenticationError.setValue(

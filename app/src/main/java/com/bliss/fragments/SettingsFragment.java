@@ -2,12 +2,16 @@ package com.bliss.fragments;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.content.Context;
 import android.os.VibrationEffect;
 import android.animation.ObjectAnimator;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.animation.DecelerateInterpolator;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -28,6 +32,7 @@ public class SettingsFragment extends Fragment {
     
     private Dialog dialog;
     private AuthViewModel authViewModel;
+    Boolean passwordVisibile = false;
     
     public SettingsFragment() {
     }
@@ -74,6 +79,43 @@ public class SettingsFragment extends Fragment {
                 authViewModel.deactivateAccount(deactivatePassword.getText().toString().trim());
             }
         });
+        
+        deactivatePassword.setOnTouchListener(
+                new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        final int Right = 2;
+                        if (event.getAction() == MotionEvent.ACTION_UP) {
+                            if (event.getRawX()
+                                    >= deactivatePassword.getRight()
+                                            - deactivatePassword
+                                                    .getCompoundDrawables()[Right]
+                                                    .getBounds()
+                                                    .width()) {
+                                int selection = deactivatePassword.getSelectionEnd();
+                                if (passwordVisibile.booleanValue()) {
+                                    deactivatePassword
+                                            .setCompoundDrawablesRelativeWithIntrinsicBounds(
+                                                    0, 0, R.drawable.eye_close_icon, 0);
+                                    deactivatePassword.setTextColor(Color.parseColor("#FFC100"));
+                                    deactivatePassword.setTransformationMethod(
+                                            PasswordTransformationMethod.getInstance());
+                                } else {
+                                    deactivatePassword
+                                            .setCompoundDrawablesRelativeWithIntrinsicBounds(
+                                                    0, 0, R.drawable.eye_open_icon, 0);
+                                    deactivatePassword.setTextColor(Color.WHITE);
+                                    deactivatePassword.setTransformationMethod(
+                                            HideReturnsTransformationMethod.getInstance());
+                                }
+                                passwordVisibile = !passwordVisibile;
+                                deactivatePassword.setSelection(selection);
+                                return true;
+                            }
+                        }
+                        return false;
+                    }
+                });
 
         
         authViewModel.getAuthenticatedUser().observe(getViewLifecycleOwner(), user -> {

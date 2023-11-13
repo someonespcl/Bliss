@@ -21,4 +21,11 @@
     <string name="deactivate">Deactivate</string>
     <string name="deactivate_account">Deactivate account</string>
     <string name="deactivate_account_text">Are you sure you want to deactivate your account?\nBy doing this you will lose all of your saved data and will not be able to retrieve it.</string>
+    <string name="enter_password_to_continue">Enter password to continue</string>
+    
+    <string name="logout">Logout</string>
+    <string name="are_you_sure_logout">Are you sure you want to logout ?</string>
+    
+    <string name="edit_profile">Edit Profile</string>
+    
 </resources>

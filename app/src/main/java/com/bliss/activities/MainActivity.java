@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.FragmentManager;
 import com.bliss.activities.LoginActivity;
 import com.bliss.databinding.ActivityMainBinding;
+import com.bliss.fragments.ProfileFragment;
 import com.bliss.fragments.SettingsFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -37,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
                      case 0:
                         break;
                      case 1:
+                        ProfileFragment profileFragment = new ProfileFragment();
+                        fragmentManager.beginTransaction().replace(R.id.main_frame, profileFragment).commit();
                         break;
                      case 2:
                         break;
