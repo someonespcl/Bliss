@@ -5,15 +5,18 @@
      xmlns:tools="http://schemas.android.com/tools"
      android:layout_height="match_parent"
      android:layout_width="match_parent"
-     android:padding="25dp"
+     android:paddingEnd="15dp"
      android:orientation="vertical"
+     android:paddingBottom="10dp"
+     android:paddingStart="15dp"
+     android:paddingTop="10dp"
      tools:context=".fragments.ProfileFragment">
 
     <RelativeLayout
          android:layout_height="wrap_content"
          android:layout_width="match_parent">
 
-        <com.bliss.utils.CustomSquircleImageView
+        <de.hdodenhof.circleimageview.CircleImageView
              android:layout_height="150dp"
              android:layout_width="150dp"
              android:src="@drawable/profile_image"
@@ -63,15 +66,15 @@
                      app:backgroundTint="#1Affffff"
                      android:elevation="8dp"
                      android:includeFontPadding="false"
-                     android:textSize="16sp"
                      android:fontFamily="@font/poppins_medium"
                      android:textAllCaps="false"
                      android:textColor="@android:color/white"
+                     android:id="@+id/startEditProfileActivity"
                      android:text="@string/edit_profile" />
 
                 <ImageButton
                      android:layout_height="match_parent"
-                     android:layout_width="50dp"
+                     android:layout_width="48dp"
                      android:src="@drawable/settings_icon"
                      android:background="@drawable/icon_background_button"
                      android:layout_marginLeft="8dp" />
@@ -80,27 +83,41 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <RelativeLayout
              android:layout_height="wrap_content"
              android:layout_width="match_parent"
-             android:layout_below="@id/profile_user_main_image"
-             android:orientation="vertical">
+             android:layout_below="@id/profile_user_main_image">
 
             <TextView
                  android:layout_height="wrap_content"
                  android:layout_width="wrap_content"
                  android:fontFamily="@font/poppins_bold"
                  android:textSize="20sp"
+                 android:layout_marginLeft="8dp"
                  android:textColor="@android:color/white"
-                 android:text="Intrests" />
+                 android:layout_marginTop="8dp"
+                 android:text="Intrests"
+                 android:id="@+id/intrests_text" />
+
+            <ImageButton
+                 android:layout_height="48dp"
+                 android:layout_width="48dp"
+                 android:src="@drawable/add_icon"
+                 android:layout_below="@id/intrests_text"
+                 android:background="@drawable/intrests_background_button"
+                 android:backgroundTint="#1AFFFFFF"
+                 android:layout_alignParentStart="true"
+                 android:id="@+id/add_intrests" />
 
             <HorizontalScrollView
                  android:layout_height="wrap_content"
                  android:layout_width="match_parent"
                  android:scrollbars="none"
                  android:requiresFadingEdge="horizontal"
+                 android:layout_toRightOf="@id/add_intrests"
                  android:clipToPadding="false"
-                 android:fadingEdgeLength="16dp"
+                 android:fadingEdgeLength="24dp"
+                 android:layout_alignBottom="@id/add_intrests"
                  android:overScrollMode="never">
 
                 <LinearLayout
@@ -118,6 +135,7 @@
                          android:textSize="16sp"
                          android:fontFamily="@font/poppins_medium"
                          android:textAllCaps="false"
+                         android:layout_marginLeft="5dp"
                          android:textColor="@android:color/black"
                          android:text="Animation" />
 
@@ -200,7 +218,7 @@
 
             </HorizontalScrollView>
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </RelativeLayout>
 

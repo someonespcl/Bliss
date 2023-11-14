@@ -16,6 +16,9 @@
         android:enableOnBackInvokedCallback="true"
         android:resizeableActivity="false" >
         <activity
+            android:name=".activities.EditProfileActivity"
+            android:exported="true" />
+        <activity
             android:name=".activities.RegisterActivity"
             android:exported="true" />
         <activity

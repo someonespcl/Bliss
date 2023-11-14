@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_height="wrap_content"
+     android:layout_width="wrap_content"
+     android:background="@android:color/transparent"
+     android:padding="16dp"
+     android:orientation="vertical">
+
+    <TextView
+         android:layout_height="wrap_content"
+         android:layout_width="wrap_content"
+         android:includeFontPadding="false"
+         android:fontFamily="@font/poppins_bold"
+         android:textColor="@android:color/white"
+         android:text="Add Interests" />
+
+    <ScrollView
+         android:layout_height="200dp"
+         android:layout_width="wrap_content"
+         android:scrollbars="none"
+         android:fadingEdge="vertical"
+         android:fadingEdgeLength="24dp"
+         android:layout_marginTop="12dp"
+         android:overScrollMode="never">
+
+        <LinearLayout
+             android:layout_height="wrap_content"
+             android:layout_width="wrap_content"
+             android:orientation="vertical">
+
+            <Button
+                 android:layout_height="wrap_content"
+                 android:layout_width="wrap_content"
+                 android:background="@drawable/intrests_background_button"
+                 app:backgroundTint="#01BEFE"
+                 android:elevation="8dp"
+                 android:includeFontPadding="false"
+                 android:textSize="16sp"
+                 android:fontFamily="@font/poppins_medium"
+                 android:textAllCaps="false"
+                 android:layout_marginLeft="5dp"
+                 android:textColor="@android:color/black"
+                 android:text="Animation" />
+
+            <Button
+                 android:layout_height="wrap_content"
+                 android:layout_width="wrap_content"
+                 android:drawablePadding="4dp"
+                 app:backgroundTint="#FFDD00"
+                 android:elevation="8dp"
+                 android:textSize="16sp"
+                 android:layout_marginLeft="5dp"
+                 android:textColor="@android:color/black"
+                 android:background="@drawable/intrests_background_button"
+                 android:includeFontPadding="false"
+                 android:fontFamily="@font/poppins_medium"
+                 android:textAllCaps="false"
+                 android:drawableRight="@drawable/chef_icon"
+                 android:text="Cooking" />
+
+            <Button
+                 android:layout_height="wrap_content"
+                 android:layout_width="wrap_content"
+                 app:backgroundTint="#FF7D00"
+                 android:elevation="8dp"
+                 android:textSize="16sp"
+                 android:layout_marginLeft="5dp"
+                 android:textColor="@android:color/black"
+                 android:background="@drawable/intrests_background_button"
+                 android:includeFontPadding="false"
+                 android:fontFamily="@font/poppins_medium"
+                 android:textAllCaps="false"
+                 android:id="@+id/coding_button"
+                 android:text="Coding" />
+
+            <Button
+                 android:layout_height="wrap_content"
+                 android:layout_width="wrap_content"
+                 android:drawablePadding="4dp"
+                 app:backgroundTint="#FF006D"
+                 android:elevation="8dp"
+                 android:textSize="16sp"
+                 android:layout_marginLeft="5dp"
+                 android:textColor="@android:color/black"
+                 android:background="@drawable/intrests_background_button"
+                 android:includeFontPadding="false"
+                 android:fontFamily="@font/poppins_medium"
+                 android:textAllCaps="false"
+                 android:drawableRight="@drawable/photography_icon"
+                 android:text="Photography" />
+
+            <Button
+                 android:layout_height="wrap_content"
+                 android:layout_width="wrap_content"
+                 android:background="@drawable/intrests_background_button"
+                 app:backgroundTint="#ADFF02"
+                 android:elevation="8dp"
+                 android:includeFontPadding="false"
+                 android:textSize="16sp"
+                 android:fontFamily="@font/poppins_medium"
+                 android:textAllCaps="false"
+                 android:layout_marginLeft="5dp"
+                 android:textColor="@android:color/black"
+                 android:text="Traveling" />
+
+            <Button
+                 android:layout_height="wrap_content"
+                 android:layout_width="wrap_content"
+                 android:background="@drawable/intrests_background_button"
+                 app:backgroundTint="#8F00FF"
+                 android:elevation="8dp"
+                 android:includeFontPadding="false"
+                 android:textSize="16sp"
+                 android:fontFamily="@font/poppins_medium"
+                 android:textAllCaps="false"
+                 android:layout_marginLeft="5dp"
+                 android:textColor="@android:color/black"
+                 android:text="Gaming" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+         android:layout_height="wrap_content"
+         android:layout_width="match_parent"
+         android:orientation="horizontal"
+         android:layout_marginTop="12dp">
+
+        <Button
+             android:layout_height="wrap_content"
+             android:layout_width="wrap_content"
+             app:backgroundTint="@null"
+             android:elevation="8dp"
+             android:textSize="16sp"
+             android:textColor="@android:color/white"
+             android:background="@android:color/transparent"
+             android:includeFontPadding="false"
+             android:fontFamily="@font/poppins_medium"
+             android:textAllCaps="false"
+             android:layout_weight="1"
+             android:text="@string/cancel"
+             android:id="@+id/add_intrests_dialog_cancel" />
+
+        <Button
+             android:layout_height="wrap_content"
+             android:layout_width="wrap_content"
+             android:background="@drawable/yellow_background_button"
+             app:backgroundTint="@null"
+             android:elevation="8dp"
+             android:includeFontPadding="false"
+             android:textSize="16sp"
+             android:fontFamily="@font/poppins_medium"
+             android:textAllCaps="false"
+             android:textColor="@android:color/white"
+             android:text="Add"
+             android:id="@+id/add_intrest_from_dialog" />
+
+    </LinearLayout>
+
+</LinearLayout>
