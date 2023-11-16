@@ -14,6 +14,7 @@ android {
         targetSdk 34
         versionCode 1
         versionName "1.0"
+        resConfigs "en"
         renderscriptTargetApi 34
         renderscriptSupportModeEnabled true
         
@@ -26,7 +27,7 @@ android {
         abi {
             enable true
             reset()
-            include 'arm64-v8a', 'armeabi-v7a', 'x86'
+            include 'arm64-v8a', 'armeabi-v7a'
             universalApk false
         }
     }
