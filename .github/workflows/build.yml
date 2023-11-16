@@ -19,16 +19,18 @@ jobs:
       with:
         java-version: '17'
         distribution: 'adopt'
-        cache: 'gradle'
-        
-    - name: Make Gradlew Executable
-      run: chmod +x ./gradlew
 
-    - name: Build Debug APK
-      run: ./gradlew assembleDebug
+    - name: Build app-arm64-v8a-release Debug APK
+      run: ./gradlew assembleDebug -Pandroid.injected.abi=arm64-v8a
+      
+    - name: Build app-arm64-v8a-release Debug APK
+      run: ./gradlew assembleDebug -Pandroid.injected.abi=armeabi-v7a
 
-    - name: Build Release APK
-      run: ./gradlew assembleRelease
+    - name: Build app-arm64-v8a-release Release APK
+      run: ./gradlew assembleRelease -Pandroid.injected.abi=arm64-v8a
+      
+    - name: Build app-armeabi-v7a-release Release APK
+      run: ./gradlew assembleRelease -Pandroid.injected.abi=armeabi-v7a
       
     - name: Upload app-arm64-v8a-debug Debug APK
       uses: actions/upload-artifact@v3
