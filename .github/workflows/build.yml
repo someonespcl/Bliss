@@ -19,6 +19,9 @@ jobs:
       with:
         java-version: '17'
         distribution: 'adopt'
+    
+    - name: Make Gradlew Executable
+      run: chmod +x ./gradlew
 
     - name: Build app-arm64-v8a-release Debug APK
       run: ./gradlew assembleDebug -Pandroid.injected.abi=arm64-v8a
