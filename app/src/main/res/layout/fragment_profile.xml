@@ -5,11 +5,10 @@
      xmlns:tools="http://schemas.android.com/tools"
      android:layout_height="match_parent"
      android:layout_width="match_parent"
-     android:paddingEnd="15dp"
+     android:paddingEnd="16dp"
      android:orientation="vertical"
-     android:paddingBottom="10dp"
-     android:paddingStart="15dp"
-     android:paddingTop="10dp"
+     android:paddingStart="16dp"
+     android:paddingTop="24dp"
      tools:context=".fragments.ProfileFragment">
 
     <RelativeLayout
@@ -17,18 +16,17 @@
          android:layout_width="match_parent">
 
         <de.hdodenhof.circleimageview.CircleImageView
-             android:layout_height="150dp"
-             android:layout_width="150dp"
+             android:layout_height="128dp"
+             android:layout_width="128dp"
              android:src="@drawable/profile_image"
              android:id="@+id/profile_user_main_image" />
 
         <LinearLayout
              android:layout_height="wrap_content"
-             android:layout_width="wrap_content"
-             android:layout_marginBottom="2dp"
+             android:layout_width="match_parent"
              android:orientation="vertical"
              android:layout_toRightOf="@id/profile_user_main_image"
-             android:layout_marginLeft="10dp"
+             android:layout_marginLeft="8dp"
              android:layout_alignBottom="@id/profile_user_main_image">
 
             <TextView
@@ -38,7 +36,7 @@
                  android:includeFontPadding="false"
                  android:fontFamily="@font/poppins_extrabold"
                  android:textColor="@android:color/white"
-                 android:layout_marginTop="4dp"
+                 android:layout_marginLeft="8dp"
                  android:id="@+id/profile_user_name"
                  android:text="Madhav Poola" />
 
@@ -49,13 +47,14 @@
                  android:includeFontPadding="false"
                  android:fontFamily="@font/poppins_medium"
                  android:textColor="@android:color/white"
+                 android:layout_marginLeft="8dp"
                  android:layout_marginTop="4dp"
                  android:id="@+id/profile_user_email"
                  android:text="Madhavpoola4@gmail.com" />
 
             <LinearLayout
                  android:layout_height="wrap_content"
-                 android:layout_width="wrap_content"
+                 android:layout_width="match_parent"
                  android:orientation="horizontal"
                  android:layout_marginTop="8dp">
 
@@ -69,6 +68,7 @@
                      android:fontFamily="@font/poppins_medium"
                      android:textAllCaps="false"
                      android:textColor="@android:color/white"
+                     android:layout_weight="1"
                      android:id="@+id/startEditProfileActivity"
                      android:text="@string/edit_profile" />
 
@@ -93,7 +93,6 @@
                  android:layout_width="wrap_content"
                  android:fontFamily="@font/poppins_bold"
                  android:textSize="20sp"
-                 android:layout_marginLeft="8dp"
                  android:textColor="@android:color/white"
                  android:layout_marginTop="8dp"
                  android:text="Intrests"
@@ -226,13 +225,32 @@
          android:layout_height="match_parent"
          android:layout_width="match_parent"
          android:scrollbars="none"
+         android:fadingEdge="vertical"
          android:clipToPadding="false"
+         android:fadingEdgeLength="24dp"
          android:overScrollMode="never">
 
         <LinearLayout
              android:layout_height="wrap_content"
              android:layout_width="match_parent"
              android:orientation="vertical">
+
+            <TextView
+                 android:layout_height="wrap_content"
+                 android:layout_width="wrap_content"
+                 android:fontFamily="@font/poppins_bold"
+                 android:textSize="20sp"
+                 android:textColor="@android:color/white"
+                 android:layout_marginTop="8dp"
+                 android:text="Bio" />
+
+            <TextView
+                 android:layout_height="wrap_content"
+                 android:layout_width="wrap_content"
+                 android:includeFontPadding="false"
+                 android:fontFamily="@font/poppins_regular"
+                 android:textColor="@android:color/white"
+                 android:text="Madhav\nSingle Charming\n11/10/2004 Save The Date\nLoves Coding, Sleeping, Coding." />
 
         </LinearLayout>
 

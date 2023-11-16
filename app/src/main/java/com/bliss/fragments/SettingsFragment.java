@@ -56,6 +56,7 @@ public class SettingsFragment extends Fragment {
         dialog = new Dialog(requireContext());
         dialog.setContentView(R.layout.custom_dialog_layout);
         dialog.getWindow().setBackgroundDrawableResource(R.drawable.custom_dialog_background);
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         dialog.setCancelable(false);
         dialog.setCanceledOnTouchOutside(false);
         
