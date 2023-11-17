@@ -13,6 +13,7 @@
          android:layout_height="24dp"
          android:layout_width="24dp"
          android:src="@drawable/settings_icon"
-         android:layout_gravity="right|top" />
+         android:layout_gravity="end|top"
+         android:importantForAccessibility="no" />
 
 </LinearLayout>

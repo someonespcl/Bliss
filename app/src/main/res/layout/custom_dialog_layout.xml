@@ -14,20 +14,15 @@
          android:layout_width="wrap_content"
          android:orientation="horizontal">
 
-        <ImageView
-             android:layout_height="21dp"
-             android:layout_width="21dp"
-             android:src="@drawable/alert_icon" />
-
         <TextView
              android:layout_height="wrap_content"
              android:layout_width="wrap_content"
+             android:drawablePadding="8dp"
+             app:drawableStartCompat="@drawable/alert_icon"
              android:includeFontPadding="false"
              android:fontFamily="@font/poppins_semibold"
              android:textSize="18sp"
-             android:layout_marginLeft="5dp"
              android:textColor="#c72229"
-             android:layout_gravity="center"
              android:text="@string/deactivate_account" />
 
     </LinearLayout>
@@ -49,24 +44,26 @@
          android:textColor="#FFC100"
          android:layout_marginTop="10dp"
          android:background="@drawable/edit_text_background"
-         android:hint="Password"
+         android:hint="@string/password_hint"
          android:includeFontPadding="false"
          android:fontFamily="@font/poppins_regular"
          android:backgroundTint="@null"
-         android:drawableRight="@drawable/eye_close_icon"
+         android:drawableEnd="@drawable/eye_close_icon"
          android:paddingHorizontal="12dp"
          android:inputType="textPassword"
+         android:autofillHints="password"
          android:id="@+id/deactivate_account_password" />
 
     <LinearLayout
          android:layout_height="wrap_content"
          android:layout_width="match_parent"
          android:orientation="horizontal"
-         android:layout_marginTop="12dp">
+         android:layout_marginTop="12dp"
+         style="?android:attr/buttonBarStyle">
 
         <Button
              android:layout_height="wrap_content"
-             android:layout_width="wrap_content"
+             android:layout_width="0dp"
              app:backgroundTint="@null"
              android:elevation="8dp"
              android:textSize="16sp"
@@ -75,6 +72,7 @@
              android:includeFontPadding="false"
              android:fontFamily="@font/poppins_medium"
              android:textAllCaps="false"
+             style="?android:attr/buttonBarButtonStyle"
              android:layout_weight="1"
              android:text="@string/cancel"
              android:id="@+id/deactivate_dialog_cancel_button" />
@@ -86,6 +84,7 @@
              app:backgroundTint="@null"
              android:elevation="8dp"
              android:includeFontPadding="false"
+             style="?android:attr/buttonBarButtonStyle"
              android:textSize="16sp"
              android:fontFamily="@font/poppins_medium"
              android:textAllCaps="false"

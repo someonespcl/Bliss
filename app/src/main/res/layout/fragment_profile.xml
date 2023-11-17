@@ -18,15 +18,15 @@
         <de.hdodenhof.circleimageview.CircleImageView
              android:layout_height="128dp"
              android:layout_width="128dp"
-             android:src="@drawable/profile_image"
+             android:src="@drawable/person_icon"
              android:id="@+id/profile_user_main_image" />
 
         <LinearLayout
              android:layout_height="wrap_content"
              android:layout_width="match_parent"
              android:orientation="vertical"
-             android:layout_toRightOf="@id/profile_user_main_image"
-             android:layout_marginLeft="8dp"
+             android:layout_toStartOf="@id/profile_user_main_image"
+             android:layout_marginStart="8dp"
              android:layout_alignBottom="@id/profile_user_main_image">
 
             <TextView
@@ -36,9 +36,9 @@
                  android:includeFontPadding="false"
                  android:fontFamily="@font/poppins_extrabold"
                  android:textColor="@android:color/white"
-                 android:layout_marginLeft="8dp"
+                 android:layout_marginStart="8dp"
                  android:id="@+id/profile_user_name"
-                 android:text="Madhav Poola" />
+                 android:text="@string/username_hint" />
 
             <TextView
                  android:layout_height="wrap_content"
@@ -47,10 +47,10 @@
                  android:includeFontPadding="false"
                  android:fontFamily="@font/poppins_medium"
                  android:textColor="@android:color/white"
-                 android:layout_marginLeft="8dp"
                  android:layout_marginTop="4dp"
+                 android:layout_marginStart="8dp"
                  android:id="@+id/profile_user_email"
-                 android:text="Madhavpoola4@gmail.com" />
+                 android:text="@string/email_hint" />
 
             <LinearLayout
                  android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
 
                 <Button
                      android:layout_height="wrap_content"
-                     android:layout_width="wrap_content"
+                     android:layout_width="0dp"
                      android:background="@drawable/intrests_background_button"
                      app:backgroundTint="#1Affffff"
                      android:elevation="8dp"
@@ -77,7 +77,8 @@
                      android:layout_width="48dp"
                      android:src="@drawable/settings_icon"
                      android:background="@drawable/icon_background_button"
-                     android:layout_marginLeft="8dp" />
+                     android:layout_marginStart="8dp"
+                     android:importantForAccessibility="no" />
 
             </LinearLayout>
 
@@ -95,7 +96,7 @@
                  android:textSize="20sp"
                  android:textColor="@android:color/white"
                  android:layout_marginTop="8dp"
-                 android:text="Intrests"
+                 android:text="@string/intrests"
                  android:id="@+id/intrests_text" />
 
             <ImageButton
@@ -106,22 +107,24 @@
                  android:background="@drawable/intrests_background_button"
                  android:backgroundTint="#1AFFFFFF"
                  android:layout_alignParentStart="true"
-                 android:id="@+id/add_intrests" />
+                 android:id="@+id/add_intrests"
+                 android:importantForAccessibility="no" />
 
             <HorizontalScrollView
                  android:layout_height="wrap_content"
                  android:layout_width="match_parent"
                  android:scrollbars="none"
                  android:requiresFadingEdge="horizontal"
-                 android:layout_toRightOf="@id/add_intrests"
+                 android:layout_toStartOf="@id/add_intrests"
                  android:clipToPadding="false"
                  android:fadingEdgeLength="24dp"
                  android:layout_alignBottom="@id/add_intrests"
                  android:overScrollMode="never">
 
                 <LinearLayout
+                     style="?android:attr/buttonBarStyle"
                      android:layout_height="wrap_content"
-                     android:layout_width="match_parent"
+                     android:layout_width="wrap_content"
                      android:orientation="horizontal">
 
                     <Button
@@ -130,13 +133,14 @@
                          android:background="@drawable/intrests_background_button"
                          app:backgroundTint="#01BEFE"
                          android:elevation="8dp"
+                         style="?android:attr/buttonBarButtonStyle"
                          android:includeFontPadding="false"
                          android:textSize="16sp"
                          android:fontFamily="@font/poppins_medium"
                          android:textAllCaps="false"
-                         android:layout_marginLeft="5dp"
                          android:textColor="@android:color/black"
-                         android:text="Animation" />
+                         android:layout_marginStart="5dp"
+                         android:text="@string/animation" />
 
                     <Button
                          android:layout_height="wrap_content"
@@ -144,15 +148,16 @@
                          android:drawablePadding="4dp"
                          app:backgroundTint="#FFDD00"
                          android:elevation="8dp"
+                         style="?android:attr/buttonBarButtonStyle"
+                         android:drawableEnd="@drawable/chef_icon"
                          android:textSize="16sp"
-                         android:layout_marginLeft="5dp"
                          android:textColor="@android:color/black"
+                         android:layout_marginStart="5dp"
                          android:background="@drawable/intrests_background_button"
                          android:includeFontPadding="false"
                          android:fontFamily="@font/poppins_medium"
                          android:textAllCaps="false"
-                         android:drawableRight="@drawable/chef_icon"
-                         android:text="Cooking" />
+                         android:text="@string/cooking" />
 
                     <Button
                          android:layout_height="wrap_content"
@@ -160,14 +165,15 @@
                          app:backgroundTint="#FF7D00"
                          android:elevation="8dp"
                          android:textSize="16sp"
-                         android:layout_marginLeft="5dp"
+                         style="?android:attr/buttonBarButtonStyle"
                          android:textColor="@android:color/black"
+                         android:layout_marginStart="5dp"
                          android:background="@drawable/intrests_background_button"
                          android:includeFontPadding="false"
                          android:fontFamily="@font/poppins_medium"
                          android:textAllCaps="false"
                          android:id="@+id/coding_button"
-                         android:text="Coding" />
+                         android:text="@string/coding" />
 
                     <Button
                          android:layout_height="wrap_content"
@@ -175,15 +181,16 @@
                          android:drawablePadding="4dp"
                          app:backgroundTint="#FF006D"
                          android:elevation="8dp"
+                         android:drawableEnd="@drawable/photography_icon"
                          android:textSize="16sp"
-                         android:layout_marginLeft="5dp"
+                         style="?android:attr/buttonBarButtonStyle"
                          android:textColor="@android:color/black"
+                         android:layout_marginStart="5dp"
                          android:background="@drawable/intrests_background_button"
                          android:includeFontPadding="false"
                          android:fontFamily="@font/poppins_medium"
                          android:textAllCaps="false"
-                         android:drawableRight="@drawable/photography_icon"
-                         android:text="Photography" />
+                         android:text="@string/photography" />
 
                     <Button
                          android:layout_height="wrap_content"
@@ -193,25 +200,27 @@
                          android:elevation="8dp"
                          android:includeFontPadding="false"
                          android:textSize="16sp"
+                         style="?android:attr/buttonBarButtonStyle"
                          android:fontFamily="@font/poppins_medium"
                          android:textAllCaps="false"
-                         android:layout_marginLeft="5dp"
                          android:textColor="@android:color/black"
-                         android:text="Traveling" />
+                         android:layout_marginStart="5dp"
+                         android:text="@string/traveling" />
 
                     <Button
                          android:layout_height="wrap_content"
                          android:layout_width="wrap_content"
                          android:background="@drawable/intrests_background_button"
                          app:backgroundTint="#8F00FF"
+                         style="?android:attr/buttonBarButtonStyle"
                          android:elevation="8dp"
                          android:includeFontPadding="false"
                          android:textSize="16sp"
                          android:fontFamily="@font/poppins_medium"
                          android:textAllCaps="false"
-                         android:layout_marginLeft="5dp"
                          android:textColor="@android:color/black"
-                         android:text="Gaming" />
+                         android:layout_marginStart="5dp"
+                         android:text="@string/gaming" />
 
                 </LinearLayout>
 
@@ -242,7 +251,7 @@
                  android:textSize="20sp"
                  android:textColor="@android:color/white"
                  android:layout_marginTop="8dp"
-                 android:text="Bio" />
+                 android:text="@string/bio" />
 
             <TextView
                  android:layout_height="wrap_content"
@@ -250,7 +259,7 @@
                  android:includeFontPadding="false"
                  android:fontFamily="@font/poppins_regular"
                  android:textColor="@android:color/white"
-                 android:text="Madhav\nSingle Charming\n11/10/2004 Save The Date\nLoves Coding, Sleeping, Coding." />
+                 android:text="@string/bio_dis" />
 
         </LinearLayout>
 
