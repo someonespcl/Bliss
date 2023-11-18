@@ -17,11 +17,12 @@
         <TextView
              android:layout_height="wrap_content"
              android:layout_width="wrap_content"
-             android:drawablePadding="8dp"
+             android:drawablePadding="4dp"
              app:drawableStartCompat="@drawable/alert_icon"
              android:includeFontPadding="false"
              android:fontFamily="@font/poppins_semibold"
              android:textSize="18sp"
+             android:drawableTint="#c72229"
              android:textColor="#c72229"
              android:text="@string/deactivate_account" />
 

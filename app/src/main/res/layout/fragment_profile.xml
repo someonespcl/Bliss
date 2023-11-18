@@ -24,8 +24,8 @@
         <LinearLayout
              android:layout_height="wrap_content"
              android:layout_width="match_parent"
+             android:layout_toEndOf="@id/profile_user_main_image"
              android:orientation="vertical"
-             android:layout_toStartOf="@id/profile_user_main_image"
              android:layout_marginStart="8dp"
              android:layout_alignBottom="@id/profile_user_main_image">
 
@@ -77,8 +77,8 @@
                      android:layout_width="48dp"
                      android:src="@drawable/settings_icon"
                      android:background="@drawable/icon_background_button"
-                     android:layout_marginStart="8dp"
-                     android:importantForAccessibility="no" />
+                     android:importantForAccessibility="no"
+                     android:layout_marginStart="8dp" />
 
             </LinearLayout>
 
@@ -105,41 +105,41 @@
                  android:src="@drawable/add_icon"
                  android:layout_below="@id/intrests_text"
                  android:background="@drawable/intrests_background_button"
+                 android:importantForAccessibility="no"
                  android:backgroundTint="#1AFFFFFF"
                  android:layout_alignParentStart="true"
-                 android:id="@+id/add_intrests"
-                 android:importantForAccessibility="no" />
+                 android:id="@+id/add_intrests" />
 
             <HorizontalScrollView
                  android:layout_height="wrap_content"
                  android:layout_width="match_parent"
                  android:scrollbars="none"
+                 android:layout_toEndOf="@id/add_intrests"
                  android:requiresFadingEdge="horizontal"
-                 android:layout_toStartOf="@id/add_intrests"
                  android:clipToPadding="false"
                  android:fadingEdgeLength="24dp"
                  android:layout_alignBottom="@id/add_intrests"
                  android:overScrollMode="never">
 
                 <LinearLayout
-                     style="?android:attr/buttonBarStyle"
                      android:layout_height="wrap_content"
                      android:layout_width="wrap_content"
-                     android:orientation="horizontal">
+                     android:orientation="horizontal"
+                     style="?android:attr/buttonBarStyle">
 
                     <Button
                          android:layout_height="wrap_content"
                          android:layout_width="wrap_content"
-                         android:background="@drawable/intrests_background_button"
                          app:backgroundTint="#01BEFE"
                          android:elevation="8dp"
-                         style="?android:attr/buttonBarButtonStyle"
-                         android:includeFontPadding="false"
                          android:textSize="16sp"
-                         android:fontFamily="@font/poppins_medium"
-                         android:textAllCaps="false"
                          android:textColor="@android:color/black"
                          android:layout_marginStart="5dp"
+                         android:background="@drawable/intrests_background_button"
+                         android:includeFontPadding="false"
+                         android:fontFamily="@font/poppins_medium"
+                         android:textAllCaps="false"
+                         style="?android:attr/buttonBarButtonStyle"
                          android:text="@string/animation" />
 
                     <Button
@@ -148,7 +148,6 @@
                          android:drawablePadding="4dp"
                          app:backgroundTint="#FFDD00"
                          android:elevation="8dp"
-                         style="?android:attr/buttonBarButtonStyle"
                          android:drawableEnd="@drawable/chef_icon"
                          android:textSize="16sp"
                          android:textColor="@android:color/black"
@@ -157,6 +156,7 @@
                          android:includeFontPadding="false"
                          android:fontFamily="@font/poppins_medium"
                          android:textAllCaps="false"
+                         style="?android:attr/buttonBarButtonStyle"
                          android:text="@string/cooking" />
 
                     <Button
@@ -165,13 +165,13 @@
                          app:backgroundTint="#FF7D00"
                          android:elevation="8dp"
                          android:textSize="16sp"
-                         style="?android:attr/buttonBarButtonStyle"
                          android:textColor="@android:color/black"
                          android:layout_marginStart="5dp"
                          android:background="@drawable/intrests_background_button"
                          android:includeFontPadding="false"
                          android:fontFamily="@font/poppins_medium"
                          android:textAllCaps="false"
+                         style="?android:attr/buttonBarButtonStyle"
                          android:id="@+id/coding_button"
                          android:text="@string/coding" />
 
@@ -183,43 +183,43 @@
                          android:elevation="8dp"
                          android:drawableEnd="@drawable/photography_icon"
                          android:textSize="16sp"
-                         style="?android:attr/buttonBarButtonStyle"
                          android:textColor="@android:color/black"
                          android:layout_marginStart="5dp"
                          android:background="@drawable/intrests_background_button"
                          android:includeFontPadding="false"
                          android:fontFamily="@font/poppins_medium"
                          android:textAllCaps="false"
+                         style="?android:attr/buttonBarButtonStyle"
                          android:text="@string/photography" />
 
                     <Button
                          android:layout_height="wrap_content"
                          android:layout_width="wrap_content"
-                         android:background="@drawable/intrests_background_button"
                          app:backgroundTint="#ADFF02"
                          android:elevation="8dp"
-                         android:includeFontPadding="false"
                          android:textSize="16sp"
-                         style="?android:attr/buttonBarButtonStyle"
-                         android:fontFamily="@font/poppins_medium"
-                         android:textAllCaps="false"
                          android:textColor="@android:color/black"
                          android:layout_marginStart="5dp"
+                         android:background="@drawable/intrests_background_button"
+                         android:includeFontPadding="false"
+                         android:fontFamily="@font/poppins_medium"
+                         android:textAllCaps="false"
+                         style="?android:attr/buttonBarButtonStyle"
                          android:text="@string/traveling" />
 
                     <Button
                          android:layout_height="wrap_content"
                          android:layout_width="wrap_content"
-                         android:background="@drawable/intrests_background_button"
                          app:backgroundTint="#8F00FF"
-                         style="?android:attr/buttonBarButtonStyle"
                          android:elevation="8dp"
-                         android:includeFontPadding="false"
                          android:textSize="16sp"
-                         android:fontFamily="@font/poppins_medium"
-                         android:textAllCaps="false"
                          android:textColor="@android:color/black"
                          android:layout_marginStart="5dp"
+                         android:background="@drawable/intrests_background_button"
+                         android:includeFontPadding="false"
+                         android:fontFamily="@font/poppins_medium"
+                         android:textAllCaps="false"
+                         style="?android:attr/buttonBarButtonStyle"
                          android:text="@string/gaming" />
 
                 </LinearLayout>

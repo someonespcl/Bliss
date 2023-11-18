@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_height="match_parent"
+     android:layout_width="match_parent"
+     android:scrollbars="none"
+     android:paddingEnd="16dp"
+     android:paddingStart="16dp"
+     android:paddingTop="24dp"
+     android:overScrollMode="never"
+     tools:context=".activities.EditProfileActivity">
+
+    <LinearLayout
+         android:layout_height="wrap_content"
+         android:layout_width="match_parent"
+         android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+             android:layout_height="128dp"
+             android:layout_width="128dp"
+             android:src="@drawable/person_icon"
+             android:layout_gravity="center_horizontal" />
+
+        <TextView
+             android:layout_height="wrap_content"
+             android:layout_width="wrap_content"
+             android:textAlignment="center"
+             android:includeFontPadding="false"
+             android:fontFamily="@font/poppins_extrabold"
+             android:textColor="@android:color/white"
+             android:layout_marginTop="8dp"
+             android:layout_gravity="center_horizontal"
+             android:text="@string/username_hint" />
+
+        <TextView
+             android:layout_height="wrap_content"
+             android:layout_width="wrap_content"
+             android:textAlignment="center"
+             android:includeFontPadding="false"
+             android:fontFamily="@font/poppins_medium"
+             android:textColor="@android:color/white"
+             android:layout_marginTop="4dp"
+             android:text="@string/email_hint"
+             android:layout_gravity="center_horizontal" />
+
+        <LinearLayout
+             android:layout_height="wrap_content"
+             android:layout_width="match_parent"
+             android:gravity="center_horizontal"
+             android:orientation="horizontal"
+             android:layout_marginTop="8dp">
+
+            <Button
+                 android:layout_height="wrap_content"
+                 android:layout_width="wrap_content"
+                 android:background="@drawable/intrests_background_button"
+                 app:backgroundTint="#1Affffff"
+                 android:elevation="8dp"
+                 android:includeFontPadding="false"
+                 android:fontFamily="@font/poppins_medium"
+                 android:textAllCaps="false"
+                 android:textColor="@android:color/white"
+                 android:text="@string/change_image" />
+
+            <ImageButton
+                 android:layout_height="match_parent"
+                 android:layout_width="48dp"
+                 android:src="@drawable/settings_icon"
+                 android:background="@drawable/icon_background_button"
+                 android:importantForAccessibility="no"
+                 android:layout_marginStart="8dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+             android:layout_height="wrap_content"
+             android:layout_width="match_parent"
+             android:orientation="vertical">
+
+            <TextView
+                 android:layout_height="wrap_content"
+                 android:layout_width="wrap_content"
+                 android:includeFontPadding="false"
+                 android:textSize="18sp"
+                 android:fontFamily="@font/poppins_bold"
+                 android:textColor="@android:color/white"
+                 android:layout_marginTop="8dp"
+                 android:text="@string/profile_information" />
+
+            <TextView
+                 android:layout_height="wrap_content"
+                 android:layout_width="wrap_content"
+                 android:includeFontPadding="false"
+                 android:fontFamily="@font/poppins_semibold"
+                 android:textColor="@android:color/white"
+                 android:layout_marginTop="8dp"
+                 android:text="@string/username_hint" />
+
+            <LinearLayout
+                 android:layout_height="wrap_content"
+                 android:layout_width="match_parent"
+                 android:gravity="center_horizontal"
+                 android:orientation="horizontal"
+                 android:layout_marginTop="4dp">
+
+                <EditText
+                     android:layout_height="50dp"
+                     android:layout_width="0dp"
+                     android:elevation="8dp"
+                     android:textColor="@android:color/white"
+                     android:background="@drawable/edit_text_background"
+                     android:hint="@string/username_hint"
+                     android:includeFontPadding="false"
+                     android:fontFamily="@font/poppins_regular"
+                     android:backgroundTint="@null"
+                     android:paddingHorizontal="12dp"
+                     android:autofillHints="username"
+                     android:layout_weight="1"
+                     android:inputType="textPersonName" />
+
+                <ImageButton
+                     android:layout_height="50dp"
+                     android:layout_width="50dp"
+                     android:src="@drawable/settings_icon"
+                     android:background="@drawable/icon_background_button"
+                     android:importantForAccessibility="no"
+                     android:layout_marginStart="8dp"
+                     android:layout_gravity="end" />
+
+            </LinearLayout>
+
+            <TextView
+                 android:layout_height="wrap_content"
+                 android:layout_width="wrap_content"
+                 app:drawableStartCompat="@drawable/alert_icon"
+                 android:includeFontPadding="false"
+                 android:fontFamily="@font/poppins_semibold"
+                 android:textColor="@android:color/white"
+                 android:layout_marginTop="5dp"
+                 android:text="@string/username_change_info" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

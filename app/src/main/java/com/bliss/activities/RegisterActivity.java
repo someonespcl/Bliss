@@ -65,6 +65,48 @@ public class RegisterActivity extends AppCompatActivity {
                             }
                         });
 
+        binding.registerActivityButton.setOnClickListener(
+                v -> {
+                    String registerUserName = binding.registerUserName.getText().toString().trim();
+                    String registerUserPhonenumber =
+                            binding.registerUserPhonenumber.getText().toString().trim();
+                    String registerUserEmail =
+                            binding.registerUserEmail.getText().toString().trim();
+                    String registerUserPassword =
+                            binding.registerUserPassword.getText().toString().trim();
+
+                    if (registerUserName.isEmpty()) {
+                        showErrorAnimation(binding.registerUserName);
+                        vibrateDevice();
+                    } else if (registerUserName.length() < 3) {
+                        CustomToast.showCustomToast(RegisterActivity.this, "Cannot be < 3");
+                    } else if (registerUserPhonenumber.isEmpty()) {
+                        showErrorAnimation(binding.registerUserPhonenumber);
+                        vibrateDevice();
+                    } else if (registerUserPhonenumber.length() < 10) {
+                        CustomToast.showCustomToast(RegisterActivity.this, "Invalid PhoneNumber");
+                    } else if (registerUserPhonenumber.length() > 13) {
+                        CustomToast.showCustomToast(RegisterActivity.this, "Invalid PhoneNumber Format");
+                    } else if (registerUserEmail.isEmpty()) {
+                        showErrorAnimation(binding.registerUserEmail);
+                        vibrateDevice();
+                    } else if (!Patterns.EMAIL_ADDRESS.matcher(registerUserEmail).matches()) {
+                        CustomToast.showCustomToast(RegisterActivity.this, "Invalid Email Address");
+                    } else if (registerUserPassword.isEmpty()) {
+                        showErrorAnimation(binding.registerUserPassword);
+                        vibrateDevice();
+                    } else if (registerUserPassword.length() < 6) {
+                        CustomToast.showCustomToast(RegisterActivity.this, "Password Must Be >= 6");
+                    } else {
+                        CustomLoadingDialog.showLoadingDialog(RegisterActivity.this);
+                        authViewModel.createAccountWithEmailAndPassword(
+                                registerUserName,
+                                registerUserPhonenumber,
+                                registerUserEmail,
+                                registerUserPassword);
+                    }
+                });
+
         binding.loginButton.setOnClickListener(
                 v -> {
                     Pair<View, String>[] pair = new Pair[5];
@@ -104,4 +146,10 @@ public class RegisterActivity extends AppCompatActivity {
         shakeAnimator.setInterpolator(new DecelerateInterpolator());
         shakeAnimator.start();
     }
+    
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+    
 }

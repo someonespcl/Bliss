@@ -28,6 +28,10 @@
     <string name="deactivate_account_text">Are you sure you want to deactivate your account?\nBy doing this you will lose all of your saved data and will not be able to retrieve it.</string>
     
     <string name="edit_profile">Edit Profile</string>
+    <string name="change_image">Change Image</string>
+    
+    <string name="profile_information">Profile\nInformation</string>
+    <string name="username_change_info">Username cannot can be changed once in a week</string>
     
     <string name="animation">Animation</string>
     <string name="cooking">Cooking</string>

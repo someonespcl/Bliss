@@ -1,15 +1,20 @@
 package com.bliss.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import androidx.fragment.app.Fragment;
 import com.bliss.R;
+import com.bliss.activities.EditProfileActivity;
 import com.bliss.utils.CustomNoInternetDialog;
 import com.bliss.utils.CustomToast;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 public class ProfileFragment extends Fragment {
 
@@ -23,7 +28,7 @@ public class ProfileFragment extends Fragment {
         Button startProfileActivity = view.findViewById(R.id.startEditProfileActivity);
         startProfileActivity.setOnClickListener(
                 v -> {
-                    CustomToast.showCustomToast(requireContext(), "It will be added in future");
+                    startActivity(new Intent(requireContext(), EditProfileActivity.class));
                 });
 
         ImageButton addIntrests = view.findViewById(R.id.add_intrests);

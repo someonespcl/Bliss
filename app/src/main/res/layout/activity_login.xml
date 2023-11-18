@@ -43,7 +43,6 @@
              android:layout_height="50dp"
              android:layout_width="match_parent"
              android:elevation="8dp"
-             android:autofillHints="emailAddress"
              android:textColor="@android:color/white"
              android:layout_marginTop="20dp"
              android:transitionName="email_transition"
@@ -52,6 +51,7 @@
              android:includeFontPadding="false"
              android:fontFamily="@font/poppins_regular"
              android:backgroundTint="@null"
+             android:autofillHints="emailAddress"
              android:paddingHorizontal="12dp"
              android:inputType="textEmailAddress"
              android:id="@+id/login_user_email" />
@@ -71,8 +71,8 @@
              android:fontFamily="@font/poppins_regular"
              android:backgroundTint="@null"
              android:paddingHorizontal="12dp"
-             android:inputType="textPassword"
              android:autofillHints="password"
+             android:inputType="textPassword"
              android:id="@+id/login_user_password" />
 
         <LinearLayout
@@ -125,9 +125,9 @@
              android:layout_width="match_parent"
              android:elevation="8dp"
              app:backgroundTint="@null"
-             android:drawableEnd="@drawable/arrow_right_icon"
              android:textSize="16sp"
              android:textColor="@android:color/black"
+             app:drawableEndCompat="@drawable/arrow_right_icon"
              android:layout_marginTop="20dp"
              android:transitionName="google_button_transition"
              android:background="@drawable/google_button_background"
@@ -172,9 +172,9 @@
                      android:fontFamily="@font/poppins_semibold"
                      android:textSize="16sp"
                      android:textColor="#FFC100"
+                     app:drawableEndCompat="@drawable/chevron_right_icon"
                      android:text="@string/register"
-                     android:id="@+id/register_button"
-                     app:drawableEndCompat="@drawable/chevron_right_icon" />
+                     android:id="@+id/register_button" />
 
             </LinearLayout>
 
